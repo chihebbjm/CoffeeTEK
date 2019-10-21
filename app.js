@@ -118,22 +118,15 @@ app.post('/api/coffeeTEK/login',(req,res)=>{
 console.log('Start Login !')
 
 if (!validator.isEmail(req.body.email)) return res.status(422).json({'message': 'Invalid Email address'} )
-console.log('Value of emailVrified:'+validator.isEmail(req.body.email));
-console.log('Cheking Email Validation is Done !');
-
 
 //Cheking if the email is exists  & display there info:
-//try {
    user =User.findOne({email:req.body.email}).then(data=>{
     if (!user) return res.status(400).send('Email is worng');
     console.log('Email Found !')
     
     //res.json({"message":"User info",data})
-    console.log("Dsiplay the Info of The User",data)
-
-    console.log("password : body",req.body.password)
-    console.log("password :data",data.password)
-
+    //console.log("Dsiplay the Info of The User",data)
+    
   const userconfidition=bcrypt.compareSync(req.body.password,data.password)
     console.log("userconfidition password",userconfidition)
       if (userconfidition){
@@ -145,31 +138,10 @@ console.log('Cheking Email Validation is Done !');
           //res.status(201).send({ user, token }) 
           res.json({"message":"successfully Logged in : "+ data._id,token });}
           
-      else{ res.send("Bad request. Password don't match !")}
+      else{ res.json({"message":"Bad request. Password don't match !"})}
  
 
   })
-
-
-
-  
-
-  
-//}
-/*catch (error) {
-    console.log('Error Finding this  user:', error.message);
-    res.json({"message":"Error Finding this  user: "+ error.message});
-}
-*/
-
-//Cheking if the passowrd is exists:
-//compare the body password with the password that you find with same email:
-//TODO : this part is not working 
-
-//const userconfidition = User.find(userconfidition.username === req.body.username && userconfidition.password === req.body.password);
-//console.log('Password Body :'+req.body.password);
-//console.log('Password Model :'+userconfidition.password);
-//const userconfidition =bcrypt.compareSync(User.find({password:req.body.password},data.password));
 
 
 

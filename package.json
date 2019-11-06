@@ -13,7 +13,7 @@
     "express-validator": "^6.2.0",
     "firebase-admin": "^8.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.1",
+    "mongoose": "^5.7.5",
     "node": "^12.11.1",
     "nodemon": "^1.19.3",
     "validator": "^11.1.0"
